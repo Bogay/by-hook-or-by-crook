@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://b4be3g55aoc6b"]
+
+[ext_resource type="Script" uid="uid://brglsyicl1v4o" path="res://Scripts/PlayerData.gd" id="1_wrjrr"]
+
+[resource]
+script = ExtResource("1_wrjrr")
+maxSpeed = 5.0
+timeToReachMaxSpeed = 0.5
+timeToReachZeroSpeed = 0.5
+jumpHeight = 0.3
+gravityScale = 2.0
+terminalVelocity = 25.0
+metadata/_custom_type_script = "uid://brglsyicl1v4o"

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4mp456eoavle"]
+
+[ext_resource type="Script" uid="uid://bj4rp73fp3evi" path="res://Scripts/PlayerController.gd" id="1_6t5aa"]
+[ext_resource type="SpriteFrames" uid="uid://bvkhxxduyv7jo" path="res://Animations/Player_sprite_frames.tres" id="1_v0iea"]
+[ext_resource type="Resource" uid="uid://qtkrfcsim068" path="res://player_data.tres" id="2_vgqql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(22, 56)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collider")]
+script = ExtResource("1_6t5aa")
+animated_sprite = NodePath("AnimatedSprite2D")
+collider = NodePath("CollisionShape2D")
+data = ExtResource("2_vgqql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("1_v0iea")
+animation = &"walk"
+frame_progress = 0.25391412
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.15
+drag_right_margin = 0.15

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnoarrlk8dsyy"]
+
+[ext_resource type="Script" uid="uid://c6n0sbs312a08" path="res://Scripts/PlayerController_3D.gd" id="1_pll4t"]
+[ext_resource type="SpriteFrames" uid="uid://bvkhxxduyv7jo" path="res://Animations/Player_sprite_frames.tres" id="1_ryx18"]
+[ext_resource type="Resource" uid="uid://b4be3g55aoc6b" path="res://player_data_3D.tres" id="2_pll4t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85mps"]
+size = Vector3(0.25782013, 0.54507446, 0.06713867)
+
+[node name="player_3D" type="CharacterBody3D" node_paths=PackedStringArray("animated_sprite", "collider")]
+script = ExtResource("1_pll4t")
+animated_sprite = NodePath("AnimatedSprite3D")
+collider = NodePath("CollisionShape3D")
+data = ExtResource("2_pll4t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016857147, -0.030654907, -0.0030517578)
+shape = SubResource("BoxShape3D_85mps")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+texture_filter = 0
+sprite_frames = ExtResource("1_ryx18")
+animation = &"attack"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6465836)
+projection = 1
+current = true
+size = 3.886
