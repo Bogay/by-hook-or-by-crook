@@ -111,13 +111,13 @@ func _state_machine():
 func _animate():
 	match current_state:
 		State.IDLE:
-			animated_sprite.animation = "idle"
+			animated_sprite.animation = "idle2"
 		State.RUN:
-			animated_sprite.animation = "walk"
+			animated_sprite.animation = "walk2"
 		State.JUMP:
-			animated_sprite.animation = "jump"
+			animated_sprite.animation = "jump2"
 		State.ATTACK:
-			animated_sprite.animation = "attack"
+			animated_sprite.animation = "attack2"
 		State.DEAD:
 			animated_sprite.animation = "dead"
 

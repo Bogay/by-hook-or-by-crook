@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6pke4jru8vea"]
+[gd_scene load_steps=5 format=3 uid="uid://b6pke4jru8vea"]
 
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="1_37g4p"]
+[ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="2_5hr78"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_37g4p"]
 
@@ -85,3 +86,5 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor3"]
 visible = false
+
+[node name="UIRoot" parent="." instance=ExtResource("2_5hr78")]

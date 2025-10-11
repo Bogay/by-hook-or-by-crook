@@ -19,11 +19,11 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -34)
 sprite_frames = ExtResource("1_v0iea")
-animation = &"walk"
-frame_progress = 0.25391412
+animation = &"walk2"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
