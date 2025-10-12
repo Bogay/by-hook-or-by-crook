@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfw2i70r55jqj"]
+
+[ext_resource type="Texture2D" uid="uid://yksh1oh684rk" path="res://Resources/Env/paper1.png" id="1_n5262"]
+[ext_resource type="Script" uid="uid://c48mdf77u6r7s" path="res://Scripts/PlatformSprite.gd" id="2_mrs20"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_37g4p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yg2w3"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_n5262")
+region_enabled = true
+region_rect = Rect2(93, 474.5, 848, 68)
+script = ExtResource("2_mrs20")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_37g4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_yg2w3")

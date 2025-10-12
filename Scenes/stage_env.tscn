@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://kggy4pdwoah1"]
+
+[ext_resource type="Texture2D" uid="uid://cip2usbaj1qd" path="res://Resources/Env/background.jpg" id="1_gmty1"]
+[ext_resource type="Script" uid="uid://bqk3la6w7np4a" path="res://Scripts/StageEnv.gd" id="1_wd00f"]
+[ext_resource type="Texture2D" uid="uid://hsira2vrphm5" path="res://Resources/Env/cloud1.png" id="2_f10g2"]
+[ext_resource type="Texture2D" uid="uid://cr8ghn3223uef" path="res://Resources/Env/cloud2.png" id="3_1oscg"]
+[ext_resource type="Texture2D" uid="uid://b25i0l6hhx0qx" path="res://Resources/Env/cloud3.png" id="4_jkvie"]
+
+[node name="StageEnv" type="Node2D"]
+script = ExtResource("1_wd00f")
+clouds = Array[Texture2D]([ExtResource("2_f10g2"), ExtResource("3_1oscg"), ExtResource("4_jkvie")])
+cloud_spawn_interval = 8.0
+cloud_speed_min = 15.0
+cloud_speed_max = 35.0
+cloud_scale_min = 0.5
+cloud_scale_max = 1.0
+spawn_height_min = 50.0
+spawn_height_max = 200.0
+cloud_lifetime = 20.0
+
+[node name="FollowCamera" type="Node2D" parent="."]
+
+[node name="BackgroundSprite" type="Sprite2D" parent="FollowCamera"]
+z_index = -99
+scale = Vector2(0.43205017, 0.4320503)
+texture = ExtResource("1_gmty1")
+
+[node name="Cloud1" type="Sprite2D" parent="FollowCamera"]
+position = Vector2(297.00003, -185.00002)
+scale = Vector2(0.59166664, 0.59166664)
+texture = ExtResource("2_f10g2")
+
+[node name="Cloud2" type="Sprite2D" parent="FollowCamera"]
+position = Vector2(-271, -202)
+scale = Vector2(0.71666676, 0.71666676)
+texture = ExtResource("3_1oscg")
+
+[node name="Cloud3" type="Sprite2D" parent="FollowCamera"]
+position = Vector2(63, -164)
+scale = Vector2(0.8333333, 0.8333333)
+texture = ExtResource("4_jkvie")

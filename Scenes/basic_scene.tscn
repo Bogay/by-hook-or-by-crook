@@ -2,89 +2,29 @@
 
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="1_37g4p"]
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="2_5hr78"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_37g4p"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yg2w3"]
+[ext_resource type="PackedScene" uid="uid://bfw2i70r55jqj" path="res://Scenes/platform.tscn" id="2_b4878"]
+[ext_resource type="PackedScene" uid="uid://kggy4pdwoah1" path="res://Scenes/stage_env.tscn" id="3_rib5x"]
 
 [node name="BasicScene" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_37g4p")]
 position = Vector2(448, 509)
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(572, 616)
-scale = Vector2(58.239998, 2.9999988)
-physics_material_override = SubResource("PhysicsMaterial_37g4p")
+[node name="Floor" parent="." instance=ExtResource("2_b4878")]
+position = Vector2(448, 698)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("RectangleShape2D_yg2w3")
+[node name="Floor4" parent="." instance=ExtResource("2_b4878")]
+position = Vector2(808, 635.75)
+scale = Vector2(0.3826651, 0.84558797)
 
-[node name="ColorRect" type="ColorRect" parent="Floor"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+[node name="Floor5" parent="." instance=ExtResource("2_b4878")]
+position = Vector2(10, 632.4375)
+scale = Vector2(0.3826651, 0.89522177)
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
-visible = false
-
-[node name="Floor2" type="StaticBody2D" parent="."]
-position = Vector2(534, 551)
-scale = Vector2(4.5599995, 1)
-physics_material_override = SubResource("PhysicsMaterial_37g4p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
-shape = SubResource("RectangleShape2D_yg2w3")
-
-[node name="ColorRect" type="ColorRect" parent="Floor2"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor2"]
-visible = false
-
-[node name="Floor3" type="StaticBody2D" parent="."]
-position = Vector2(639, 518)
-scale = Vector2(4.5599995, 1)
-physics_material_override = SubResource("PhysicsMaterial_37g4p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
-shape = SubResource("RectangleShape2D_yg2w3")
-
-[node name="ColorRect" type="ColorRect" parent="Floor3"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor3"]
-visible = false
+[node name="Floor6" parent="." instance=ExtResource("2_b4878")]
+position = Vector2(-235.37497, 575)
+scale = Vector2(0.5627948, 0.89522177)
 
 [node name="UIRoot" parent="." instance=ExtResource("2_5hr78")]
+
+[node name="StageEnv" parent="." instance=ExtResource("3_rib5x")]
