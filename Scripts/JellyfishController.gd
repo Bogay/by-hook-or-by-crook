@@ -6,16 +6,19 @@ extends CharacterBody2D
 # Movement constants
 const DETECTION_DISTANCE = 3.0 * 64.0  # 3 units in pixels (assuming 64 pixels per unit)
 const WALK_SPEED = 100.0
-const JUMP_FORCE = -400.0
+const JUMP_FORCE = -600.0
 
 # Timer for jumping
 var jump_timer: float = 0.0
-const JUMP_INTERVAL: float = 2.0
+const JUMP_INTERVAL: float = 0.5
 
 # Timer for attacking
 var attack_timer: float = 0.0
 const ATTACK_INTERVAL: float = 4.0
 var is_attacking: bool = false
+
+# Control flag
+var is_active: bool = true
 
 # Preload thunder scene
 var thunder_scene = preload("res://Scenes/thunder.tscn")
@@ -39,6 +42,12 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	else:
 		velocity.y = 0
+
+	# Skip all behaviors if not active
+	if not is_active:
+		velocity.x = 0
+		move_and_slide()
+		return
 
 	# Update jump timer
 	jump_timer -= delta
@@ -125,3 +134,8 @@ func _on_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		is_attacking = false
 		animated_sprite.play("walk")
+
+func stop_all_behaviors() -> void:
+	is_active = false
+	is_attacking = false
+	velocity.x = 0
