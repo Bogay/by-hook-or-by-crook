@@ -1,10 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwlb3i1awll3x"]
+[gd_scene load_steps=4 format=3 uid="uid://cwlb3i1awll3x"]
 
 [ext_resource type="Script" uid="uid://brmdwef8drrk6" path="res://Scripts/UIRoot.gd" id="1_4ftcj"]
 [ext_resource type="PackedScene" uid="uid://n0phmrb1uc1h" path="res://Scenes/game_button.tscn" id="1_in2mm"]
+[ext_resource type="PackedScene" uid="uid://dkm3p8rar5wxy" path="res://Scenes/hp_bar.tscn" id="3_hp_bar"]
 
 [node name="UIRoot" type="Node2D"]
 script = ExtResource("1_4ftcj")
+
+[node name="ScreenUI" type="CanvasLayer" parent="."]
+
+[node name="HPBar" parent="ScreenUI" instance=ExtResource("3_hp_bar")]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
 
 [node name="GameButton" parent="." instance=ExtResource("1_in2mm")]
 position = Vector2(330, -183)

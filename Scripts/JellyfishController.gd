@@ -119,7 +119,7 @@ func _spawn_thunder() -> void:
 	var from_pos = global_position + hand_offset
 	var to_pos = player.global_position
 
-	thunder.setup(from_pos, to_pos)
+	thunder.setup(from_pos, to_pos, player)
 
 func _on_animation_finished() -> void:
 	if animated_sprite.animation == "attack":

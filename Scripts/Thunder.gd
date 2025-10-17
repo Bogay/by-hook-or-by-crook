@@ -4,8 +4,10 @@ var start_pos: Vector2
 var end_pos: Vector2
 var duration: float = 0.5
 var elapsed: float = 0.0
+var damage: float = 10.0
+var has_dealt_damage: bool = false
 
-func setup(from: Vector2, to: Vector2) -> void:
+func setup(from: Vector2, to: Vector2, target = null) -> void:
 	start_pos = from
 	end_pos = to
 
@@ -33,6 +35,11 @@ func setup(from: Vector2, to: Vector2) -> void:
 			# Sprite is horizontal, stretch along X-axis
 			sprite.scale.x = distance / texture_width
 			sprite.scale.y = 1.0  # Keep height at original size
+
+	# Deal damage to target if provided
+	if target and target.has_method("take_damage") and not has_dealt_damage:
+		target.take_damage(damage)
+		has_dealt_damage = true
 
 func _process(delta: float) -> void:
 	elapsed += delta

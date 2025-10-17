@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkm3p8rar5wxy"]
+
+[ext_resource type="Texture2D" path="res://Resources/hp_bar_only.png" id="1_hp_border"]
+[ext_resource type="Texture2D" path="res://Resources/hp_red_bar.png" id="2_hp_fill"]
+[ext_resource type="Script" path="res://Scripts/HPBar.gd" id="3_hp_script"]
+
+[node name="HPBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_hp_script")
+
+[node name="HPBorder" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 20.0
+texture = ExtResource("1_hp_border")
+stretch_mode = 1
+
+[node name="HPFill" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 80.0
+offset_left = 22.0
+offset_bottom = 20.0
+scale = Vector2(0.76, 0.95)
+texture = ExtResource("2_hp_fill")
+stretch_mode = 1

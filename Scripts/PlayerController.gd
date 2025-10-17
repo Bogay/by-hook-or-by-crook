@@ -5,6 +5,12 @@ extends CharacterBody2D
 @export var collider: CollisionShape2D
 @export var data: Resource
 
+# HP System
+var max_hp: float = 100.0
+var current_hp: float = 100.0
+
+signal hp_changed(new_hp: float)
+
 enum State {
 	IDLE,
 	RUN,
@@ -139,3 +145,9 @@ func _coyoteTime():
 func _bufferJump():
 	await get_tree().create_timer(data.jumpBuffering).timeout
 	jumpWasPressed = false
+
+func take_damage(amount: float) -> void:
+	current_hp = max(0.0, current_hp - amount)
+	hp_changed.emit(current_hp)
+	if current_hp <= 0:
+		current_state = State.DEAD
