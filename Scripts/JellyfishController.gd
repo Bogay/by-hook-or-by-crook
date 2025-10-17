@@ -12,12 +12,25 @@ const JUMP_FORCE = -400.0
 var jump_timer: float = 0.0
 const JUMP_INTERVAL: float = 2.0
 
+# Timer for attacking
+var attack_timer: float = 0.0
+const ATTACK_INTERVAL: float = 4.0
+var is_attacking: bool = false
+
+# Preload thunder scene
+var thunder_scene = preload("res://Scenes/thunder.tscn")
+
 func _ready() -> void:
 	# Find the player if not assigned
 	if player == null:
 		player = get_node("/root/BasicScene/Player")
 
 	jump_timer = JUMP_INTERVAL
+	attack_timer = ATTACK_INTERVAL
+
+	# Connect animation finished signal
+	if animated_sprite:
+		animated_sprite.animation_finished.connect(_on_animation_finished)
 
 func _physics_process(delta: float) -> void:
 	# Apply gravity
@@ -29,32 +42,86 @@ func _physics_process(delta: float) -> void:
 
 	# Update jump timer
 	jump_timer -= delta
-	if jump_timer <= 0 and is_on_floor():
+	if jump_timer <= 0 and is_on_floor() and not is_attacking:
 		_jump()
 		jump_timer = JUMP_INTERVAL
 
-	# Check distance to player
-	if player != null:
-		var distance = global_position.distance_to(player.global_position)
+	# Update attack timer
+	attack_timer -= delta
+	if attack_timer <= 0 and not is_attacking:
+		_attack()
+		attack_timer = ATTACK_INTERVAL
 
-		# Walk away from player if distance is less than 3 units
-		if distance < DETECTION_DISTANCE:
-			# Calculate direction away from player (reversed)
-			var direction = sign(global_position.x - player.global_position.x)
-			if direction == 0:
-				direction = 1  # Default to right if positions are exactly the same
+	# Movement and animation (only if not attacking)
+	if not is_attacking:
+		# Check distance to player
+		if player != null:
+			var distance = global_position.distance_to(player.global_position)
 
-			velocity.x = direction * WALK_SPEED
+			# Walk away from player if distance is less than 3 units
+			if distance < DETECTION_DISTANCE:
+				# Calculate direction away from player (reversed)
+				var direction = sign(global_position.x - player.global_position.x)
+				if direction == 0:
+					direction = 1  # Default to right if positions are exactly the same
 
-			# Flip sprite based on movement direction
-			if animated_sprite:
-				animated_sprite.flip_h = direction < 0
+				velocity.x = direction * WALK_SPEED
+
+				# Flip sprite based on movement direction
+				if animated_sprite:
+					animated_sprite.flip_h = direction < 0
+			else:
+				velocity.x = 0
 		else:
 			velocity.x = 0
+
+		# Play walk animation
+		if animated_sprite and animated_sprite.animation != "attack":
+			animated_sprite.play("walk")
 	else:
+		# Stop moving during attack
 		velocity.x = 0
 
 	move_and_slide()
 
 func _jump() -> void:
 	velocity.y = JUMP_FORCE
+
+func _attack() -> void:
+	if player == null:
+		return
+
+	is_attacking = true
+
+	# Determine if player is on the left
+	var player_on_left = player.global_position.x < global_position.x
+
+	# Flip sprite to face the player
+	if animated_sprite:
+		animated_sprite.flip_h = player_on_left
+		animated_sprite.play("attack")
+
+	# Spawn thunder after a short delay
+	await get_tree().create_timer(0.2).timeout
+
+	if player != null:
+		_spawn_thunder()
+
+func _spawn_thunder() -> void:
+	var thunder = thunder_scene.instantiate()
+	get_parent().add_child(thunder)
+
+	# Calculate hand position (offset from jellyfish center)
+	var hand_offset = Vector2(16, 0)  # Adjust this based on your sprite
+	if animated_sprite and animated_sprite.flip_h:
+		hand_offset.x = -16
+
+	var from_pos = global_position + hand_offset
+	var to_pos = player.global_position
+
+	thunder.setup(from_pos, to_pos)
+
+func _on_animation_finished() -> void:
+	if animated_sprite.animation == "attack":
+		is_attacking = false
+		animated_sprite.play("walk")
