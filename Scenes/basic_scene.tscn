@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6pke4jru8vea"]
+[gd_scene load_steps=6 format=3 uid="uid://b6pke4jru8vea"]
 
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="1_37g4p"]
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="2_5hr78"]
 [ext_resource type="PackedScene" uid="uid://bfw2i70r55jqj" path="res://Scenes/platform.tscn" id="2_b4878"]
 [ext_resource type="PackedScene" uid="uid://kggy4pdwoah1" path="res://Scenes/stage_env.tscn" id="3_rib5x"]
+[ext_resource type="PackedScene" uid="uid://csxvmj2k8gbqu" path="res://Scenes/jellyfish.tscn" id="5_jellyfish"]
 
 [node name="BasicScene" type="Node"]
 
@@ -28,3 +29,6 @@ scale = Vector2(0.5627948, 0.89522177)
 [node name="UIRoot" parent="." instance=ExtResource("2_5hr78")]
 
 [node name="StageEnv" parent="." instance=ExtResource("3_rib5x")]
+
+[node name="Jellyfish" parent="." instance=ExtResource("5_jellyfish")]
+position = Vector2(200, 500)
