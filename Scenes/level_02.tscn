@@ -1,20 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8k2nan5p7qr4"]
+[gd_scene load_steps=12 format=3 uid="uid://cb3rktl8xqnd8"]
 
-[ext_resource type="PackedScene" uid="uid://cfrhw206gytyt" path="res://Scenes/Background.tscn" id="1_dvup1"]
+[ext_resource type="PackedScene" path="res://Scenes/Background.tscn" id="1_dvup1"]
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="2_3imfn"]
-[ext_resource type="PackedScene" uid="uid://d0yixu5lflrmc" path="res://Scenes/grass_platform.tscn" id="3_3imfn"]
-[ext_resource type="PackedScene" uid="uid://e07iab25c0yf" path="res://Scenes/stone_floor.tscn" id="3_iafiv"]
+[ext_resource type="PackedScene" path="res://Scenes/grass_platform.tscn" id="3_3imfn"]
+[ext_resource type="PackedScene" path="res://Scenes/stone_floor.tscn" id="3_iafiv"]
 [ext_resource type="Texture2D" uid="uid://dx23m34i37qvj" path="res://Resources/Env/realistic/Animals/Deer.png" id="5_avkje"]
-[ext_resource type="PackedScene" uid="uid://daqgvyyd827yv" path="res://Scenes/wood01_platform.tscn" id="6_avkje"]
+[ext_resource type="PackedScene" path="res://Scenes/wood01_platform.tscn" id="6_avkje"]
 [ext_resource type="PackedScene" path="res://Scenes/jellyfish.tscn" id="7_jellyfish"]
+[ext_resource type="PackedScene" path="res://Scenes/hp_bar.tscn" id="8_i5ldb"]
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="8_ui_root"]
+[ext_resource type="PackedScene" path="res://Scenes/destination_marker.tscn" id="9_destination"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpbar_platform"]
+size = Vector2(100, 20)
 
 [node name="Level02" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_dvup1")]
 
 [node name="GrassPlatform" parent="." instance=ExtResource("3_3imfn")]
-position = Vector2(769, 573)
+position = Vector2(388, 401)
 scale = Vector2(0.1, 0.1)
 
 [node name="StoneFloor" parent="." instance=ExtResource("3_iafiv")]
@@ -30,18 +35,51 @@ position = Vector2(1456, 735)
 position = Vector2(2411, 735)
 
 [node name="Deer" type="Sprite2D" parent="."]
-position = Vector2(1042, 390)
+position = Vector2(793, 369)
 scale = Vector2(-0.15, 0.15)
 texture = ExtResource("5_avkje")
 
 [node name="WoodPlatform" parent="." instance=ExtResource("6_avkje")]
-position = Vector2(1026, 457)
+position = Vector2(737, 465.00003)
+
+[node name="WoodPlatform2" parent="WoodPlatform" instance=ExtResource("6_avkje")]
+position = Vector2(1642.333, 213.333)
+scale = Vector2(0.9666667, 0.9666667)
+
+[node name="WoodPlatform" parent="WoodPlatform/WoodPlatform2" instance=ExtResource("6_avkje")]
+position = Vector2(1537.9308, -375.86203)
+rotation = -3.1159964
+scale = Vector2(1.2314947, 0.93514705)
 
 [node name="Player" parent="." instance=ExtResource("2_3imfn")]
 position = Vector2(183, 638)
 
 [node name="Jellyfish" parent="." instance=ExtResource("7_jellyfish")]
-position = Vector2(400, 600)
+position = Vector2(808, 600)
 scale = Vector2(3, 3)
+enable_walking = false
+enable_jumping = false
+track_player_for_attack = false
+thunder_damage = 100.0
+
+[node name="HPBar" parent="." instance=ExtResource("8_i5ldb")]
+offset_left = 276.0
+offset_top = 676.99994
+offset_right = 276.0
+offset_bottom = 676.99994
+rotation = -1.61737
+scale = Vector2(0.4480567, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HPBar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HPBar/StaticBody2D"]
+position = Vector2(182.13397, 31.833855)
+scale = Vector2(3.4105437, 1.9160252)
+shape = SubResource("RectangleShape2D_hpbar_platform")
 
 [node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
+position = Vector2(-9, 0)
+
+[node name="DestinationMarker" parent="." instance=ExtResource("9_destination")]
+position = Vector2(2121, 643)
+scale = Vector2(4, 4)

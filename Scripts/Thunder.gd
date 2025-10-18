@@ -1,11 +1,14 @@
-extends Node2D
+extends Area2D
 
 var start_pos: Vector2
 var end_pos: Vector2
 var duration: float = 0.5
 var elapsed: float = 0.0
 var damage: float = 50.0
-var has_dealt_damage: bool = false
+var damaged_bodies: Array = []
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
 
 func setup(from: Vector2, to: Vector2, target = null) -> void:
 	start_pos = from
@@ -36,10 +39,19 @@ func setup(from: Vector2, to: Vector2, target = null) -> void:
 			sprite.scale.x = distance / texture_width
 			sprite.scale.y = 1.0  # Keep height at original size
 
-	# Deal damage to target if provided
-	if target and target.has_method("take_damage") and not has_dealt_damage:
-		target.take_damage(damage)
-		has_dealt_damage = true
+	# Set up collision shape to match thunder size
+	var collision = $CollisionShape2D
+	if collision and collision.shape:
+		var rect_shape = collision.shape as RectangleShape2D
+		if rect_shape:
+			rect_shape.size = Vector2(distance, 20)  # Width = distance, height = 20
+
+func _on_body_entered(body: Node2D) -> void:
+	# Only damage player once
+	if body.is_in_group("Player") and not damaged_bodies.has(body):
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
+			damaged_bodies.append(body)
 
 func _process(delta: float) -> void:
 	elapsed += delta

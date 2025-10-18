@@ -3,6 +3,12 @@ extends CharacterBody2D
 @export var animated_sprite: AnimatedSprite2D
 @export var player: CharacterBody2D
 
+# Behavior toggles
+@export var enable_walking: bool = true
+@export var enable_jumping: bool = true
+@export var track_player_for_attack: bool = true
+@export var thunder_damage: float = 40.0
+
 # Movement constants
 const DETECTION_DISTANCE = 20.0 * 64.0 # 3 units in pixels (assuming 64 pixels per unit)
 const MIN_DISTANCE = 5 * 64.0 # Minimum distance to maintain from player
@@ -52,11 +58,12 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# Update jump timer
-	jump_timer -= delta
-	if jump_timer <= 0 and is_on_floor() and not is_attacking:
-		_jump()
-		jump_timer = JUMP_INTERVAL
+	# Update jump timer (only if jumping is enabled)
+	if enable_jumping:
+		jump_timer -= delta
+		if jump_timer <= 0 and is_on_floor() and not is_attacking:
+			_jump()
+			jump_timer = JUMP_INTERVAL
 
 	# Update attack timer
 	attack_timer -= delta
@@ -66,8 +73,8 @@ func _physics_process(delta: float) -> void:
 
 	# Movement and animation (only if not attacking)
 	if not is_attacking:
-		# Check distance to player
-		if player != null:
+		# Check distance to player (only if walking is enabled)
+		if enable_walking and player != null:
 			var distance = global_position.distance_to(player.global_position)
 
 			# Move based on distance from player
@@ -107,38 +114,57 @@ func _jump() -> void:
 	velocity.y = JUMP_FORCE
 
 func _attack() -> void:
-	if player == null:
-		return
-
 	is_attacking = true
 
-	# Determine if player is on the left
-	var player_on_left = player.global_position.x < global_position.x
+	# Determine attack direction
+	var attack_to_left = false
+	if track_player_for_attack and player != null:
+		# Track player position
+		attack_to_left = player.global_position.x < global_position.x
+	else:
+		# Fixed direction - always attack to the left
+		attack_to_left = true
 
-	# Flip sprite to face the player
+	# Flip sprite based on attack direction
 	if animated_sprite:
-		animated_sprite.flip_h = player_on_left
+		animated_sprite.flip_h = attack_to_left
 		animated_sprite.play("attack")
 
 	# Spawn thunder after a short delay
 	await get_tree().create_timer(0.2).timeout
 
-	if player != null:
-		_spawn_thunder()
+	_spawn_thunder(attack_to_left)
 
-func _spawn_thunder() -> void:
+func _spawn_thunder(attack_to_left: bool) -> void:
 	var thunder = thunder_scene.instantiate()
 	get_parent().add_child(thunder)
 
 	# Calculate hand position (offset from jellyfish center)
-	var hand_offset = Vector2(16, 0) # Adjust this based on your sprite
-	if animated_sprite and animated_sprite.flip_h:
+	var hand_offset = Vector2(16, 0)  # Adjust this based on your sprite
+	if attack_to_left:
 		hand_offset.x = -16
 
 	var from_pos = global_position + hand_offset
-	var to_pos = player.global_position
+	var to_pos: Vector2
 
-	thunder.setup(from_pos, to_pos, player)
+	# Determine target position
+	if player != null:
+		# Set damage before setup
+		thunder.damage = thunder_damage
+
+		if track_player_for_attack:
+			# Track player's full position (X and Y)
+			to_pos = player.global_position
+		else:
+			# Horizontal shot only - use player's X but jellyfish's Y
+			to_pos = Vector2(player.global_position.x, from_pos.y)
+
+		thunder.setup(from_pos, to_pos, player)
+	else:
+		# Fallback if no player found
+		to_pos = from_pos + Vector2(-500, 0)
+		thunder.damage = thunder_damage
+		thunder.setup(from_pos, to_pos, null)
 
 func _on_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
