@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3]
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://csjleqcj1csal"]
 
-[ext_resource type="Texture2D" path="res://Resources/jellyfish_walk_pink_128x32.png" id="1_jellyfish_walk"]
-[ext_resource type="Texture2D" path="res://Resources/jellyfish_frame1_pink_32x32.png" id="2_jellyfish_attack"]
+[ext_resource type="Texture2D" uid="uid://o4gaixmedskx" path="res://Resources/jellyfish_walk_pink_128x32.png" id="1_jellyfish_walk"]
+[ext_resource type="Texture2D" uid="uid://dsrv32pcp7sle" path="res://Resources/jellyfish_frame1_pink_32x32.png" id="2_jellyfish_attack"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jelly1"]
 atlas = ExtResource("1_jellyfish_walk")
@@ -23,6 +23,14 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_jellyfish_attack")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jelly1")
 }, {
 "duration": 1.0,
@@ -37,12 +45,4 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_jellyfish_attack")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 5.0
 }]

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="2_5hr78"]
 [ext_resource type="PackedScene" uid="uid://bfw2i70r55jqj" path="res://Scenes/platform.tscn" id="2_b4878"]
 [ext_resource type="PackedScene" uid="uid://kggy4pdwoah1" path="res://Scenes/stage_env.tscn" id="3_rib5x"]
-[ext_resource type="PackedScene" uid="uid://csxvmj2k8gbqu" path="res://Scenes/jellyfish.tscn" id="5_jellyfish"]
+[ext_resource type="PackedScene" path="res://Scenes/jellyfish.tscn" id="5_jellyfish"]
 
 [node name="BasicScene" type="Node"]
 
@@ -32,3 +32,4 @@ scale = Vector2(0.5627948, 0.89522177)
 
 [node name="Jellyfish" parent="." instance=ExtResource("5_jellyfish")]
 position = Vector2(200, 500)
+scale = Vector2(3, 3)
