@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx70a03k5m8np"]
+
+[ext_resource type="Script" path="res://Scripts/DestinationMarker.gd" id="1_marker"]
+[ext_resource type="SpriteFrames" path="res://Animations/DestinationMarker_sprite_frames.tres" id="2_marker_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_marker"]
+size = Vector2(32, 12)
+
+[node name="DestinationMarker" type="Area2D"]
+script = ExtResource("1_marker")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("2_marker_frames")
+animation = &"glow"
+autoplay = "glow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_marker")

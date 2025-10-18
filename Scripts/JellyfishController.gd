@@ -6,7 +6,7 @@ extends CharacterBody2D
 # Movement constants
 const DETECTION_DISTANCE = 20.0 * 64.0  # 3 units in pixels (assuming 64 pixels per unit)
 const MIN_DISTANCE = 5 * 64.0  # Minimum distance to maintain from player
-const WALK_SPEED = 100.0
+const WALK_SPEED = 200.0
 const JUMP_FORCE = -600.0
 
 # Timer for jumping

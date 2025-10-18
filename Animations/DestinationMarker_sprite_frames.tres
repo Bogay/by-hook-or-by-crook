@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cafstim5hoi54"]
+
+[ext_resource type="Texture2D" uid="uid://b82qq570dwewu" path="res://Resources/destination_marker_small_yellow_128x12.png" id="1_marker"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_marker1"]
+atlas = ExtResource("1_marker")
+region = Rect2(0, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_marker2"]
+atlas = ExtResource("1_marker")
+region = Rect2(32, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_marker3"]
+atlas = ExtResource("1_marker")
+region = Rect2(64, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_marker4"]
+atlas = ExtResource("1_marker")
+region = Rect2(96, 0, 32, 12)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_marker1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_marker2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_marker3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_marker4")
+}],
+"loop": true,
+"name": &"glow",
+"speed": 8.0
+}]

@@ -4,7 +4,7 @@ var start_pos: Vector2
 var end_pos: Vector2
 var duration: float = 0.5
 var elapsed: float = 0.0
-var damage: float = 10.0
+var damage: float = 50.0
 var has_dealt_damage: bool = false
 
 func setup(from: Vector2, to: Vector2, target = null) -> void:
