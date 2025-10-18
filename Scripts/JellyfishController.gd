@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var player: CharacterBody2D
 
 # Movement constants
-const DETECTION_DISTANCE = 3.0 * 64.0  # 3 units in pixels (assuming 64 pixels per unit)
+const DETECTION_DISTANCE = 20.0 * 64.0  # 3 units in pixels (assuming 64 pixels per unit)
+const MIN_DISTANCE = 5 * 64.0  # Minimum distance to maintain from player
 const WALK_SPEED = 100.0
 const JUMP_FORCE = -600.0
 
@@ -67,10 +68,17 @@ func _physics_process(delta: float) -> void:
 		if player != null:
 			var distance = global_position.distance_to(player.global_position)
 
-			# Walk away from player if distance is less than 3 units
+			# Move based on distance from player
 			if distance < DETECTION_DISTANCE:
-				# Calculate direction away from player (reversed)
-				var direction = sign(global_position.x - player.global_position.x)
+				var direction: float
+
+				if distance < MIN_DISTANCE:
+					# Too close - move away from player
+					direction = sign(global_position.x - player.global_position.x)
+				else:
+					# Within range but not too close - move toward player
+					direction = sign(player.global_position.x - global_position.x)
+
 				if direction == 0:
 					direction = 1  # Default to right if positions are exactly the same
 
