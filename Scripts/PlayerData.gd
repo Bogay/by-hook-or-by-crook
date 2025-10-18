@@ -35,10 +35,14 @@ var deceleration: float
 @export_range(0, 0.5) var coyoteTime: float = 0.2
 ##The window of time (in seconds) that your player can press the jump button before hitting the ground and still have their input registered as a jump. This is set to 0.2 seconds by default.
 @export_range(0, 0.5) var jumpBuffering: float = 0.2
+##The time between attacks (in seconds)
+@export_range(0, 5) var attack_cooldown: float = 0.5
+##The damage of each attack (in points)
+@export_range(0, 100) var attack_damage: float = 10.0
 
 var jumpMagnitude: float = 500.0
 
 func _init_data():
 	acceleration = maxSpeed / timeToReachMaxSpeed
-	deceleration = -maxSpeed / timeToReachZeroSpeed
+	deceleration = - maxSpeed / timeToReachZeroSpeed
 	jumpMagnitude = (10.0 * jumpHeight) * gravityScale

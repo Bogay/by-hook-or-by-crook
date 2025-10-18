@@ -4,8 +4,8 @@ extends CharacterBody2D
 @export var player: CharacterBody2D
 
 # Movement constants
-const DETECTION_DISTANCE = 20.0 * 64.0  # 3 units in pixels (assuming 64 pixels per unit)
-const MIN_DISTANCE = 5 * 64.0  # Minimum distance to maintain from player
+const DETECTION_DISTANCE = 20.0 * 64.0 # 3 units in pixels (assuming 64 pixels per unit)
+const MIN_DISTANCE = 5 * 64.0 # Minimum distance to maintain from player
 const WALK_SPEED = 200.0
 const JUMP_FORCE = -600.0
 
@@ -23,6 +23,8 @@ var is_active: bool = true
 
 # Preload thunder scene
 var thunder_scene = preload("res://Scenes/thunder.tscn")
+
+var hp: float = 50.0
 
 func _ready() -> void:
 	# Find the player if not assigned
@@ -80,7 +82,7 @@ func _physics_process(delta: float) -> void:
 					direction = sign(player.global_position.x - global_position.x)
 
 				if direction == 0:
-					direction = 1  # Default to right if positions are exactly the same
+					direction = 1 # Default to right if positions are exactly the same
 
 				velocity.x = direction * WALK_SPEED
 
@@ -129,7 +131,7 @@ func _spawn_thunder() -> void:
 	get_parent().add_child(thunder)
 
 	# Calculate hand position (offset from jellyfish center)
-	var hand_offset = Vector2(16, 0)  # Adjust this based on your sprite
+	var hand_offset = Vector2(16, 0) # Adjust this based on your sprite
 	if animated_sprite and animated_sprite.flip_h:
 		hand_offset.x = -16
 
@@ -147,3 +149,10 @@ func stop_all_behaviors() -> void:
 	is_active = false
 	is_attacking = false
 	velocity.x = 0
+
+func take_damage(amount: float) -> void:
+	hp -= amount
+	print("Jellyfish took ", amount, " damage. Current HP: ", hp)
+	if hp <= 0:
+		print("Jellyfish defeated!")
+		queue_free()
