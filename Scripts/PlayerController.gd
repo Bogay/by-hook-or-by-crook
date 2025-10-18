@@ -31,12 +31,19 @@ var current_state = State.IDLE
 
 func _ready() -> void:
 	data._init_data()
+	animated_sprite.animation_finished.connect(self._on_animation_finished)
 
-func _process(delta):
+func _on_animation_finished():
+	if animated_sprite.animation == "attack2":
+		if is_on_floor():
+			current_state = State.IDLE
+		else:
+			current_state = State.JUMP
+
+func _process(_delta):
 	_input_handler()
 
 func _physics_process(delta: float) -> void:
-
 	#Move Input
 	move_direction = Input.get_vector("left", "right", "down", "up")
 	if move_direction != Vector2.ZERO:
@@ -51,10 +58,15 @@ func _physics_process(delta: float) -> void:
 	_animate()
 
 func _input_handler():
-	#Jump
+	if current_state == State.ATTACK:
+		return
+
 	if Input.is_action_just_pressed("jump"):
 		jumpWasPressed = true
 		_bufferJump()
+	
+	if Input.is_action_just_pressed("main_attack"):
+		current_state = State.ATTACK
 
 func _ground_check():
 	if is_on_floor():
@@ -75,9 +87,12 @@ func _calculate_velocity(vel: Vector2, delta: float) -> Vector2:
 	return vel
 
 func _calculate_horizontal_velocity(velX: float, delta: float) -> float:
+	if current_state == State.ATTACK:
+		return 0.0
+
 	velX = lerp(velX, move_direction.x * data.maxSpeed, data.acceleration * delta)
 
-	if(external_velocity.x != 0):
+	if (external_velocity.x != 0):
 		velX = external_velocity.x
 		external_velocity.x = 0
 
@@ -92,7 +107,7 @@ func _calculate_vertical_velocity(velY: float, delta: float) -> float:
 	else:
 		velY = 0
 
-	if(external_velocity.y != 0):
+	if (external_velocity.y != 0):
 		velY = external_velocity.y
 		external_velocity.y = 0
 
@@ -107,7 +122,7 @@ func _state_machine():
 			if move_direction.x == 0:
 				current_state = State.IDLE
 		State.JUMP:
-			if is_on_floor():
+			if is_on_floor() and velocity.y == 0:
 				current_state = State.IDLE
 		State.ATTACK:
 			pass
@@ -131,8 +146,8 @@ func _animate():
 	animated_sprite.play()
 
 func _jump():
-	if is_on_floor() or coyoteActive:
-		external_velocity.y = -data.jumpMagnitude
+	if (is_on_floor() or coyoteActive) and current_state != State.ATTACK:
+		external_velocity.y = - data.jumpMagnitude
 		coyoteActive = false
 		jumpWasPressed = false
 		current_state = State.JUMP
