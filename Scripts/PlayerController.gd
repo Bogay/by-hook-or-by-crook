@@ -183,3 +183,10 @@ func take_damage(amount: float) -> void:
 	hp_changed.emit(current_hp)
 	if current_hp <= 0:
 		current_state = State.DEAD
+		_handle_death()
+
+func _handle_death() -> void:
+	# Wait for death animation to play
+	await get_tree().create_timer(1.0).timeout
+	# Switch to game over screen
+	get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
