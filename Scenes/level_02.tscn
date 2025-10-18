@@ -83,3 +83,4 @@ position = Vector2(-9, 0)
 [node name="DestinationMarker" parent="." instance=ExtResource("9_destination")]
 position = Vector2(2121, 643)
 scale = Vector2(4, 4)
+next_scene_path = "res://Scenes/win_screen.tscn"
