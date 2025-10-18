@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(21, 65)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collider")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collider") groups=["Player"]]
 script = ExtResource("1_6t5aa")
 animated_sprite = NodePath("AnimatedSprite2D")
 collider = NodePath("CollisionShape2D")

@@ -26,7 +26,7 @@ var thunder_scene = preload("res://Scenes/thunder.tscn")
 func _ready() -> void:
 	# Find the player if not assigned
 	if player == null:
-		player = get_node("/root/BasicScene/Player")
+		player = get_tree().get_first_node_in_group("Player")
 
 	jump_timer = JUMP_INTERVAL
 	attack_timer = ATTACK_INTERVAL

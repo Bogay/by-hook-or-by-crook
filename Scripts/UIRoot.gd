@@ -3,8 +3,12 @@ extends Node2D
 func _ready() -> void:
 	$DebugBackground.free()
 
-	# Connect player HP to HP bar
-	var player = get_node("/root/BasicScene/Player")
+	# Connect player HP to HP bar - find player in current scene
+	var player = get_tree().get_first_node_in_group("Player")
+	if player == null:
+		# Try finding in sibling nodes
+		player = get_parent().get_node_or_null("Player")
+
 	var hp_bar = $ScreenUI/HPBar
 	if player and hp_bar:
 		player.hp_changed.connect(_on_player_hp_changed)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://do0fx5roxyo53"]
+[gd_scene load_steps=9 format=3 uid="uid://do0fx5roxyo53"]
 
 [ext_resource type="PackedScene" uid="uid://cfrhw206gytyt" path="res://Scenes/Background.tscn" id="1_dvup1"]
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="2_3imfn"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://e07iab25c0yf" path="res://Scenes/stone_floor.tscn" id="3_iafiv"]
 [ext_resource type="Texture2D" uid="uid://dx23m34i37qvj" path="res://Resources/Env/realistic/Animals/Deer.png" id="5_avkje"]
 [ext_resource type="PackedScene" uid="uid://daqgvyyd827yv" path="res://Scenes/wood01_platform.tscn" id="6_avkje"]
+[ext_resource type="PackedScene" path="res://Scenes/jellyfish.tscn" id="7_jellyfish"]
+[ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="8_ui_root"]
 
 [node name="Level01" type="Node2D"]
 
@@ -37,3 +39,9 @@ position = Vector2(1026, 457)
 
 [node name="Player" parent="." instance=ExtResource("2_3imfn")]
 position = Vector2(183, 638)
+
+[node name="Jellyfish" parent="." instance=ExtResource("7_jellyfish")]
+position = Vector2(400, 600)
+scale = Vector2(3, 3)
+
+[node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
