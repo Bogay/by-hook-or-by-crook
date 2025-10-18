@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4mp456eoavle"]
+[gd_scene load_steps=6 format=3 uid="uid://d4mp456eoavle"]
 
 [ext_resource type="Script" uid="uid://bj4rp73fp3evi" path="res://Scripts/PlayerController.gd" id="1_6t5aa"]
 [ext_resource type="SpriteFrames" uid="uid://bvkhxxduyv7jo" path="res://Animations/Player_sprite_frames.tres" id="1_v0iea"]
@@ -7,10 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(21, 65)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collider") groups=["Player"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(56.5, 30)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collider", "attack_area") groups=["Player"]]
 script = ExtResource("1_6t5aa")
 animated_sprite = NodePath("AnimatedSprite2D")
 collider = NodePath("CollisionShape2D")
+attack_area = NodePath("AttackArea")
 data = ExtResource("2_vgqql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -33,3 +37,9 @@ drag_vertical_enabled = true
 drag_left_margin = 0.15
 drag_right_margin = 0.15
 drag_bottom_margin = 0.0
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(41.75, 5)
+shape = SubResource("RectangleShape2D_6t5aa")
