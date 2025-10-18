@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0yixu5lflrmc"]
+
+[ext_resource type="Texture2D" uid="uid://c6if3sqi6v61t" path="res://Resources/Env/realistic/Lands/Land.png" id="1_h4alt"]
+[ext_resource type="Texture2D" uid="uid://5bls8sdev7qe" path="res://Resources/Env/realistic/Tapes/Tape4.png" id="2_02mv1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5desb"]
+size = Vector2(2178.667, 548.4762)
+
+[node name="GrassPlatform" type="Node2D"]
+position = Vector2(-4.9999995, 0)
+scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.35)
+texture = ExtResource("1_h4alt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(12.000053, -483.76196)
+shape = SubResource("RectangleShape2D_5desb")
+
+[node name="Tape4" type="Sprite2D" parent="."]
+position = Vector2(459.99988, 16.666595)
+rotation = 0.52823883
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_02mv1")

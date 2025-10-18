@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxsewrml8sw0i"]
+
+[ext_resource type="Texture2D" uid="uid://4tsjcgo85uui" path="res://Resources/Env/realistic/Rocks/large-flat-stone-for-outdoor-use-png.png" id="1_yi3a5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5desb"]
+size = Vector2(1775.0002, 300.00003)
+
+[node name="StonePlatform" type="Node2D"]
+position = Vector2(-4.9999995, 0)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.827976e-06, -19.999998)
+rotation = 0.034906585
+scale = Vector2(1.2, 0.7)
+texture = ExtResource("1_yi3a5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2(1.1999999, 0.6999999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4.166672, 64.28572)
+scale = Vector2(1, 0.99999994)
+shape = SubResource("RectangleShape2D_5desb")

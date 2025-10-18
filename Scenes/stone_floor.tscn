@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://e07iab25c0yf"]
+
+[ext_resource type="Texture2D" uid="uid://4tsjcgo85uui" path="res://Resources/Env/realistic/Rocks/large-flat-stone-for-outdoor-use-png.png" id="1_yvqee"]
+[ext_resource type="Texture2D" uid="uid://wjhru6lil27n" path="res://Resources/Env/realistic/Tapes/Tape1.png" id="2_wwgig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5desb"]
+size = Vector2(1590.0002, 388.57147)
+
+[node name="StoneFloor" type="Node2D"]
+position = Vector2(-4.9999995, 0)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.827976e-06, -19.999998)
+rotation = 0.034906585
+scale = Vector2(1.2, 0.7)
+texture = ExtResource("1_yvqee")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2(1.1999999, 0.6999999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-41.66667, 19.999996)
+scale = Vector2(1, 0.99999994)
+shape = SubResource("RectangleShape2D_5desb")
+
+[node name="Tape1" type="Sprite2D" parent="."]
+position = Vector2(-870, -188)
+rotation = 0.78982
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_wwgig")

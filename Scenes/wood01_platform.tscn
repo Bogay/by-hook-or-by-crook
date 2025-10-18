@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://daqgvyyd827yv"]
+
+[ext_resource type="Texture2D" uid="uid://b0dfsin2wepv4" path="res://Resources/Env/realistic/Logs/BigLog.png" id="1_6xfyf"]
+[ext_resource type="Texture2D" uid="uid://coq1tj0qvq1bc" path="res://Resources/Env/realistic/Tapes/Tape5.png" id="2_tg3ab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5desb"]
+size = Vector2(1761.1111, 285.71426)
+
+[node name="WoodPlatform" type="Node2D"]
+position = Vector2(-4.9999995, 0)
+scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.04363323
+scale = Vector2(0.6, 0.35)
+texture = ExtResource("1_6xfyf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2(0.6, 0.35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(30.555563, -9.5238085)
+shape = SubResource("RectangleShape2D_5desb")
+
+[node name="Tape5" type="Sprite2D" parent="."]
+position = Vector2(243.33333, -60.000008)
+rotation = 0.35822514
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_tg3ab")

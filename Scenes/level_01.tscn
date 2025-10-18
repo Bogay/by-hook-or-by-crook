@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://do0fx5roxyo53"]
+
+[ext_resource type="PackedScene" uid="uid://cfrhw206gytyt" path="res://Scenes/Background.tscn" id="1_dvup1"]
+[ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="2_3imfn"]
+[ext_resource type="PackedScene" uid="uid://d0yixu5lflrmc" path="res://Scenes/grass_platform.tscn" id="3_3imfn"]
+[ext_resource type="PackedScene" uid="uid://e07iab25c0yf" path="res://Scenes/stone_floor.tscn" id="3_iafiv"]
+[ext_resource type="Texture2D" uid="uid://dx23m34i37qvj" path="res://Resources/Env/realistic/Animals/Deer.png" id="5_avkje"]
+[ext_resource type="PackedScene" uid="uid://daqgvyyd827yv" path="res://Scenes/wood01_platform.tscn" id="6_avkje"]
+
+[node name="Level01" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_dvup1")]
+
+[node name="GrassPlatform" parent="." instance=ExtResource("3_3imfn")]
+position = Vector2(769, 573)
+scale = Vector2(0.1, 0.1)
+
+[node name="StoneFloor" parent="." instance=ExtResource("3_iafiv")]
+position = Vector2(502, 735)
+
+[node name="StoneFloor2" parent="." instance=ExtResource("3_iafiv")]
+position = Vector2(1456, 735)
+
+[node name="StoneFloor3" parent="." instance=ExtResource("3_iafiv")]
+position = Vector2(1456, 735)
+
+[node name="StoneFloor4" parent="." instance=ExtResource("3_iafiv")]
+position = Vector2(2411, 735)
+
+[node name="Deer" type="Sprite2D" parent="."]
+position = Vector2(1042, 390)
+scale = Vector2(-0.15, 0.15)
+texture = ExtResource("5_avkje")
+
+[node name="WoodPlatform" parent="." instance=ExtResource("6_avkje")]
+position = Vector2(1026, 457)
+
+[node name="Player" parent="." instance=ExtResource("2_3imfn")]
+position = Vector2(183, 638)

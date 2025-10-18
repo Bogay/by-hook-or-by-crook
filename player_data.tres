@@ -6,6 +6,6 @@
 script = ExtResource("1_ldidj")
 timeToReachMaxSpeed = 4.0
 timeToReachZeroSpeed = 4.0
-jumpHeight = 30.0
+jumpHeight = 40.0
 gravityScale = 2.0
 metadata/_custom_type_script = "uid://brglsyicl1v4o"
