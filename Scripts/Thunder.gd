@@ -23,7 +23,11 @@ func setup(from: Vector2, to: Vector2, target = null) -> void:
 
 	# Calculate the distance and scale the sprite accordingly
 	var distance = from.distance_to(to)
+
 	var sprite = $Sprite2D
+	# Make sure sprite is visible
+	sprite.show()
+	sprite.modulate = Color(1, 1, 1, 1)  # Fully opaque white
 	if sprite and sprite.texture:
 		# Check if texture is taller than it is wide (vertical sprite)
 		var texture_width = sprite.texture.get_width()

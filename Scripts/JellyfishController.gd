@@ -138,6 +138,10 @@ func _attack() -> void:
 	# Spawn thunder after a short delay
 	await get_tree().create_timer(0.2).timeout
 
+	# Check if still active after the delay
+	if not is_active or is_dead:
+		return
+
 	_spawn_thunder(attack_to_left)
 
 func _spawn_thunder(attack_to_left: bool) -> void:
