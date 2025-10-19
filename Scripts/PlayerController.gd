@@ -351,7 +351,7 @@ func give_bubble_shield() -> void:
 	bubble_sprite.texture = load("res://Resources/bubble.png")
 	bubble_sprite.scale = Vector2(2.5, 2.5)  # Scale up the bubble
 	bubble_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	bubble_sprite.z_index = -1  # Behind the player
+	bubble_sprite.z_index = 100  # On top of everything
 
 	# Add to the player's parent (the level)
 	get_parent().add_child(bubble_sprite)
