@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*res://Scripts/GameState.gd"
+LoadingScreen="*res://loading_screen.tscn"
+SceneManager="*res://Scripts/SceneManager.gd"
 
 [display]
 

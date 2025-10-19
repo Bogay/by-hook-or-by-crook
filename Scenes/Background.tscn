@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://cfrhw206gytyt"]
 
-[ext_resource type="Texture2D" uid="uid://r7kpm5eukvoe" path="res://Resources/Env/realistic/background_paper.png" id="1_dvy6d"]
+[ext_resource type="Texture2D" uid="uid://r7kpm5eukvoe" path="res://Resources/Env/background_paper.png" id="1_dvy6d"]
 [ext_resource type="Texture2D" uid="uid://b51lhirwh2bb3" path="res://Resources/Env/realistic/Clouds/Cloud1.png" id="2_ni1bc"]
 [ext_resource type="Texture2D" uid="uid://coq1tj0qvq1bc" path="res://Resources/Env/realistic/Tapes/Tape5.png" id="3_ni1bc"]
 [ext_resource type="Texture2D" uid="uid://cuxyk6pc5bs7q" path="res://Resources/Env/realistic/Clouds/Cloud7(White).png" id="3_q11sa"]
@@ -27,6 +27,7 @@ scale = Vector2(0.67, 0.67)
 motion_scale = Vector2(0, 0)
 
 [node name="BackgroundPaper" type="Sprite2D" parent="ParallaxBackground/Background"]
+modulate = Color(0.96, 0.96, 0.9216, 1)
 texture_filter = 1
 texture = ExtResource("1_dvy6d")
 centered = false
