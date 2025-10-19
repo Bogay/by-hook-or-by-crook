@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://hp_bar_physics"]
+
+[ext_resource type="Texture2D" path="res://Resources/hp_bar_only.png" id="1_hp_border"]
+[ext_resource type="Texture2D" path="res://Resources/hp_red_bar.png" id="2_hp_fill"]
+[ext_resource type="Script" path="res://Scripts/HPBarPhysics.gd" id="3_hp_physics_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpbar"]
+size = Vector2(384, 64)
+
+[node name="HPBarPhysics" type="RigidBody2D" node_paths=PackedStringArray("hp_border", "hp_fill")]
+mass = 5.0
+gravity_scale = 0.0
+lock_rotation = false
+freeze = true
+script = ExtResource("3_hp_physics_script")
+hp_border = NodePath("HPBorder")
+hp_fill = NodePath("HPFill")
+
+[node name="HPBorder" type="TextureRect" parent="."]
+offset_left = -55.0
+offset_top = -12.0
+offset_right = -5.0
+offset_bottom = 12.0
+texture = ExtResource("1_hp_border")
+stretch_mode = 1
+
+[node name="HPFill" type="TextureRect" parent="."]
+offset_left = -28.0
+offset_top = 5.0
+offset_right = 32.0
+offset_bottom = 5.0
+scale = Vector2(0.76, 0.95)
+texture = ExtResource("2_hp_fill")
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hpbar")

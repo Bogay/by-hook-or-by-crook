@@ -12,6 +12,10 @@ var can_throw_spear: bool = true
 var spear_throw_cooldown: float = 2.0
 var throw_target_position: Vector2 = Vector2.ZERO
 
+# Pickup system
+var held_item: Node = null
+var held_item_type: String = ""
+
 # HP System
 var max_hp: float = 100.0
 var current_hp: float = 100.0
@@ -77,6 +81,10 @@ func _physics_process(delta: float) -> void:
 	_move(delta)
 	_state_machine()
 	_animate()
+
+	# Update held item position above head
+	if held_item and is_instance_valid(held_item):
+		held_item.global_position = global_position + Vector2(0, -80)  # Position above head
 
 func _input_handler():
 	if current_state == State.ATTACK or current_state == State.THROW:
@@ -179,6 +187,14 @@ func _animate():
 	animated_sprite.play()
 
 func _start_attack():
+	# Check if holding an item - use it instead of attacking
+	if held_item != null:
+		_use_held_item()
+		# Return to idle immediately
+		current_state = State.IDLE
+		return
+
+	# Normal attack
 	can_attack = false
 	attack_area.get_node("CollisionShape2D").disabled = false
 	await get_tree().create_timer(data.attack_cooldown).timeout
@@ -231,3 +247,51 @@ func _spawn_spear():
 	# Calculate direction from player to target
 	var direction = (throw_target_position - global_position).normalized()
 	spear.set_direction(direction)
+
+	# Set player reference for pickup
+	spear.player = self
+
+func pickup_item(item: Node, item_type: String) -> void:
+	print("Player picking up: ", item_type)
+	held_item = item
+	held_item_type = item_type
+
+	# Position item on head
+	if held_item:
+		held_item.global_position = global_position + Vector2(0, -80)
+		# Make sure it's visible
+		if held_item.has_method("show"):
+			held_item.show()
+		print("Item positioned on player's head")
+
+func _use_held_item() -> void:
+	if held_item == null:
+		return
+
+	print("Using held item: ", held_item_type)
+
+	match held_item_type:
+		"TestButton":
+			# Stop jellyfish
+			var jellyfish = get_tree().get_first_node_in_group("Jellyfish")
+			if jellyfish and jellyfish.has_method("stop_all_behaviors"):
+				jellyfish.stop_all_behaviors()
+				print("Jellyfish stopped using held button!")
+			# Consume the item
+			if held_item and is_instance_valid(held_item):
+				held_item.queue_free()
+			held_item = null
+			held_item_type = ""
+
+		"HPBar":
+			# Place HPBar at mouse position on ground
+			var mouse_pos = get_global_mouse_position()
+			if held_item and is_instance_valid(held_item):
+				held_item.global_position = mouse_pos
+				if held_item.has_method("place_on_ground"):
+					held_item.place_on_ground()
+				else:
+					held_item.show()
+				print("HPBar placed at: ", mouse_pos)
+			held_item = null
+			held_item_type = ""

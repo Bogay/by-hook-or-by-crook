@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwlb3i1awll3x"]
 
 [ext_resource type="Script" uid="uid://brmdwef8drrk6" path="res://Scripts/UIRoot.gd" id="1_4ftcj"]
-[ext_resource type="PackedScene" uid="uid://n0phmrb1uc1h" path="res://Scenes/game_button.tscn" id="1_in2mm"]
+[ext_resource type="PackedScene" path="res://Scenes/game_button_pickup.tscn" id="1_button_pickup"]
 [ext_resource type="PackedScene" path="res://Scenes/hp_bar.tscn" id="3_hp_bar"]
 
 [node name="UIRoot" type="Node2D"]
@@ -15,7 +15,7 @@ offset_top = 76.0
 offset_right = 47.0
 offset_bottom = 76.0
 
-[node name="GameButton" parent="." instance=ExtResource("1_in2mm")]
+[node name="GameButton" parent="." instance=ExtResource("1_button_pickup")]
 position = Vector2(330, -183)
 
 [node name="DebugBackground" type="ColorRect" parent="."]
