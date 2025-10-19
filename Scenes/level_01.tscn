@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qlj2uw2d2x1x"]
+[gd_scene load_steps=13 format=3 uid="uid://qlj2uw2d2x1x"]
 
 [ext_resource type="PackedScene" uid="uid://cfrhw206gytyt" path="res://Scenes/Background.tscn" id="1_dvup1"]
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="2_3imfn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/stone_floor.tscn" id="3_iafiv"]
 [ext_resource type="Texture2D" uid="uid://dx23m34i37qvj" path="res://Resources/Env/realistic/Animals/Deer.png" id="5_avkje"]
 [ext_resource type="PackedScene" path="res://Scenes/wood01_platform.tscn" id="6_avkje"]
+[ext_resource type="PackedScene" uid="uid://csxvmj2k8gbqu" path="res://Scenes/jellyfish.tscn" id="7_jellyfish"]
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="8_ui_root"]
 [ext_resource type="PackedScene" path="res://Scenes/destination_marker.tscn" id="9_destination"]
 [ext_resource type="Script" uid="uid://csv3bcuy758n" path="res://Scripts/Level01.gd" id="10_level01_script"]
@@ -57,3 +58,8 @@ scale = Vector2(3, 3)
 [node name="Jellyfish3" parent="." instance=ExtResource("12_rmyfx")]
 position = Vector2(867.00006, 383)
 scale = Vector2(3, 3)
+
+[node name="Jellyfish" parent="." instance=ExtResource("7_jellyfish")]
+position = Vector2(1961.0001, 580)
+scale = Vector2(3, 3)
+start_inactive = true

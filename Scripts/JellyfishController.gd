@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var enable_jumping: bool = true
 @export var track_player_for_attack: bool = true
 @export var thunder_damage: float = 40.0
+@export var start_inactive: bool = false
 
 # Movement constants
 const DETECTION_DISTANCE = 20.0 * 64.0 # 3 units in pixels (assuming 64 pixels per unit)
@@ -42,6 +43,10 @@ func _ready() -> void:
 	# Find the player if not assigned
 	if player == null:
 		player = get_tree().get_first_node_in_group("Player")
+
+	# Set initial active state
+	if start_inactive:
+		is_active = false
 
 	jump_timer = JUMP_INTERVAL
 	attack_timer = ATTACK_INTERVAL
