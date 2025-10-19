@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=54 format=3 uid="uid://bvkhxxduyv7jo"]
+[gd_resource type="SpriteFrames" load_steps=60 format=3 uid="uid://bvkhxxduyv7jo"]
 
 [ext_resource type="Texture2D" uid="uid://bde0idma40lrr" path="res://Resources/StickmanPack/Idle/thickIdleSheet.png" id="1_1gpeh"]
 [ext_resource type="Texture2D" uid="uid://bsumdp5ocoinl" path="res://Resources/StickmanPack/Punch/thickPunchSheet.png" id="1_b44xj"]
@@ -8,27 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b77601lr61hm3" path="res://Resources/stickman/idle.png" id="4_i12xo"]
 [ext_resource type="Texture2D" uid="uid://bxs38qrxd5ywo" path="res://Resources/stickman/walk.png" id="5_63wog"]
 [ext_resource type="Texture2D" uid="uid://657lqsdlgbfx" path="res://Resources/stickman/jump.png" id="6_g3ntx"]
-[ext_resource type="Texture2D" path="res://Resources/stickman/throw.png" id="7_throw"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_throw1"]
-atlas = ExtResource("7_throw")
-region = Rect2(0, 0, 192, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_throw2"]
-atlas = ExtResource("7_throw")
-region = Rect2(192, 0, 192, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_throw3"]
-atlas = ExtResource("7_throw")
-region = Rect2(384, 0, 192, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_throw4"]
-atlas = ExtResource("7_throw")
-region = Rect2(0, 128, 192, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_throw5"]
-atlas = ExtResource("7_throw")
-region = Rect2(192, 128, 192, 128)
+[ext_resource type="Texture2D" uid="uid://qmm7iho30x5x" path="res://Resources/stickman/throw.png" id="7_throw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2iha"]
 atlas = ExtResource("1_b44xj")
@@ -137,6 +117,26 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1wtds"]
 atlas = ExtResource("3_t5otg")
 region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw1"]
+atlas = ExtResource("7_throw")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw2"]
+atlas = ExtResource("7_throw")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw3"]
+atlas = ExtResource("7_throw")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw4"]
+atlas = ExtResource("7_throw")
+region = Rect2(0, 128, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw5"]
+atlas = ExtResource("7_throw")
+region = Rect2(192, 128, 192, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7yo7"]
 atlas = ExtResource("2_b44xj")

@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 # Spear throwing
 const SPEAR_SCENE = preload("res://Scenes/spear.tscn")
+const HIT_EFFECT_SCENE = preload("res://Scenes/hit_effect.tscn")
 var can_throw_spear: bool = true
 var spear_throw_cooldown: float = 2.0
 var throw_target_position: Vector2 = Vector2.ZERO
@@ -21,6 +22,7 @@ var max_hp: float = 100.0
 var current_hp: float = 100.0
 
 signal hp_changed(new_hp: float)
+signal took_damage
 
 enum State {
 	IDLE,
@@ -217,8 +219,23 @@ func _bufferJump():
 	jumpWasPressed = false
 
 func take_damage(amount: float) -> void:
+	if current_state == State.DEAD: return
+
 	current_hp = max(0.0, current_hp - amount)
 	hp_changed.emit(current_hp)
+	took_damage.emit()
+
+	# Spawn hit particle effect
+	var hit_effect = HIT_EFFECT_SCENE.instantiate()
+	get_parent().add_child(hit_effect)
+	hit_effect.global_position = global_position
+
+	# Add Hit Flash Effect
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
+	animated_sprite.self_modulate = Color.WHITE
+	tween.tween_property(animated_sprite, "self_modulate", Color(1, 1, 1, 1), 0.15)
+
 	if current_hp <= 0:
 		current_state = State.DEAD
 		_handle_death()

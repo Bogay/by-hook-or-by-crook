@@ -23,12 +23,17 @@ const JUMP_INTERVAL: float = 0.5
 var attack_timer: float = 0.0
 const ATTACK_INTERVAL: float = 4.0
 var is_attacking: bool = false
+var is_dead: bool = false # Prevent multiple death triggers
 
 # Control flag
 var is_active: bool = true
 
-# Preload thunder scene
+# Add a signal for when the jellyfish dies
+signal died
+
+# Preload scenes
 var thunder_scene = preload("res://Scenes/thunder.tscn")
+var hit_effect_scene = preload("res://Scenes/hit_effect.tscn")
 
 var hp: float = 50.0
 
@@ -52,8 +57,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0
 
-	# Skip all behaviors if not active
-	if not is_active:
+	# Skip all behaviors if not active or dead
+	if not is_active or is_dead:
 		velocity.x = 0
 		move_and_slide()
 		return
@@ -140,7 +145,7 @@ func _spawn_thunder(attack_to_left: bool) -> void:
 	get_parent().add_child(thunder)
 
 	# Calculate hand position (offset from jellyfish center)
-	var hand_offset = Vector2(16, 0)  # Adjust this based on your sprite
+	var hand_offset = Vector2(16, 0) # Adjust this based on your sprite
 	if attack_to_left:
 		hand_offset.x = -16
 
@@ -177,8 +182,51 @@ func stop_all_behaviors() -> void:
 	velocity.x = 0
 
 func take_damage(amount: float) -> void:
+	if is_dead: return # Don't take damage if already dead
+
 	hp -= amount
 	print("Jellyfish took ", amount, " damage. Current HP: ", hp)
+
+	# Spawn hit particle effect
+	var hit_effect = hit_effect_scene.instantiate()
+	get_parent().add_child(hit_effect)
+	hit_effect.global_position = global_position
+
+	# Add Hit Flash Effect
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
+	# Use self_modulate to avoid interfering with modulate from other sources
+	animated_sprite.self_modulate = Color.WHITE
+	tween.tween_property(animated_sprite, "self_modulate", Color(1, 1, 1, 1), 0.1)
+
 	if hp <= 0:
-		print("Jellyfish defeated!")
-		queue_free()
+		_die()
+
+func _die() -> void:
+	if is_dead: return
+	is_dead = true
+	
+	# Stop all movement and logic
+	stop_all_behaviors()
+	
+	# Disable collision so the player can pass through
+	get_node("CollisionShape2D").set_deferred("disabled", true)
+	
+	# Emit signal for screen shake
+	died.emit()
+	
+	print("Jellyfish defeated!")
+	
+	# Play death animation and fade out
+	animated_sprite.play("walk") # Or a dedicated "death" animation if you have one
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	# Fade out the sprite
+	tween.tween_property(animated_sprite, "modulate:a", 0.0, 0.5).set_delay(0.2)
+	# Make it "fall" through the floor
+	tween.tween_property(self, "position:y", position.y + 30, 0.7).set_ease(Tween.EASE_IN)
+	
+	# Wait for the tween to finish, then remove the node
+	await tween.finished
+	queue_free()
