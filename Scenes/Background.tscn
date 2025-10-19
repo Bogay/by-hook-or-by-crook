@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfrhw206gytyt"]
+[gd_scene load_steps=19 format=3 uid="uid://cfrhw206gytyt"]
 
-[ext_resource type="Texture2D" uid="uid://r7kpm5eukvoe" path="res://Resources/Env/background_paper.png" id="1_dvy6d"]
+[ext_resource type="Texture2D" uid="uid://3208rrl4ny4c" path="res://Resources/Env/background_paper.png" id="1_dvy6d"]
 [ext_resource type="Texture2D" uid="uid://b51lhirwh2bb3" path="res://Resources/Env/realistic/Clouds/Cloud1.png" id="2_ni1bc"]
 [ext_resource type="Texture2D" uid="uid://coq1tj0qvq1bc" path="res://Resources/Env/realistic/Tapes/Tape5.png" id="3_ni1bc"]
 [ext_resource type="Texture2D" uid="uid://cuxyk6pc5bs7q" path="res://Resources/Env/realistic/Clouds/Cloud7(White).png" id="3_q11sa"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://sx6cn6uaxur2" path="res://Resources/Env/realistic/Mountains/Single/mountain_orange_colored.png" id="13_04hnn"]
 [ext_resource type="Texture2D" uid="uid://g4spbrne5bmi" path="res://Resources/Env/realistic/Mountains/Single/mountain_orange.png" id="14_ecdfv"]
 [ext_resource type="Texture2D" uid="uid://ec8rskm8h4u7" path="res://Resources/Env/realistic/FlowerSea_NoShadow.png" id="15_j004f"]
+[ext_resource type="Texture2D" uid="uid://iwrnnuqci6ij" path="res://Resources/Env/realistic/New/green-grass(L-helf).png" id="17_a5c86"]
+[ext_resource type="Texture2D" uid="uid://ci6knqmt4jele" path="res://Resources/Env/realistic/New/green-grass(R-helf).png" id="18_2p3ek"]
 
 [node name="Background" type="Node2D"]
 
@@ -216,6 +218,7 @@ texture = ExtResource("14_ecdfv")
 centered = false
 
 [node name="Grass2" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
 position = Vector2(473, 546)
 motion_scale = Vector2(0.9, 0.9)
 motion_mirroring = Vector2(1274.955, 0)
@@ -229,6 +232,7 @@ centered = false
 offset = Vector2(-40, 0)
 
 [node name="Grass" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
 position = Vector2(-160, 537)
 motion_scale = Vector2(0.9, 0.9)
 motion_mirroring = Vector2(1274.955, 0)
@@ -238,5 +242,31 @@ texture_filter = 1
 position = Vector2(185, 22)
 scale = Vector2(0.67, 0.67)
 texture = ExtResource("15_j004f")
+centered = false
+offset = Vector2(-40, 0)
+
+[node name="Grass3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-160, 403)
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1274.955, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Grass3"]
+texture_filter = 1
+position = Vector2(185, 22)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("17_a5c86")
+centered = false
+offset = Vector2(-40, 0)
+
+[node name="Grass4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(481, 403)
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1274.955, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Grass4"]
+texture_filter = 1
+position = Vector2(185, 22)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("18_2p3ek")
 centered = false
 offset = Vector2(-40, 0)
