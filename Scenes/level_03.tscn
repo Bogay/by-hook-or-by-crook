@@ -69,9 +69,6 @@ position = Vector2(102, 53)
 [node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
 position = Vector2(-9, 0)
 
-[node name="HPBar" parent="UIRoot/ScreenUI"]
-visible = false
-
 [node name="DestinationMarker" parent="." instance=ExtResource("9_destination")]
 position = Vector2(2121, 643)
 scale = Vector2(4, 4)

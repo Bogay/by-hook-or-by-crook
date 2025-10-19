@@ -1,18 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwlb3i1awll3x"]
+[gd_scene load_steps=2 format=3 uid="uid://cwlb3i1awll3x"]
 
 [ext_resource type="Script" uid="uid://brmdwef8drrk6" path="res://Scripts/UIRoot.gd" id="1_4ftcj"]
-[ext_resource type="PackedScene" path="res://Scenes/hp_bar.tscn" id="3_hp_bar"]
 
 [node name="UIRoot" type="Node2D"]
 script = ExtResource("1_4ftcj")
 
 [node name="ScreenUI" type="CanvasLayer" parent="."]
-
-[node name="HPBar" parent="ScreenUI" instance=ExtResource("3_hp_bar")]
-offset_left = 47.0
-offset_top = 76.0
-offset_right = 47.0
-offset_bottom = 76.0
 
 [node name="DebugBackground" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(768, 432)

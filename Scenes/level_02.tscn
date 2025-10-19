@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cb3rktl8xqnd8"]
+[gd_scene load_steps=13 format=3 uid="uid://cb3rktl8xqnd8"]
 
 [ext_resource type="PackedScene" uid="uid://cfrhw206gytyt" path="res://Scenes/Background.tscn" id="1_dvup1"]
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="2_3imfn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dx23m34i37qvj" path="res://Resources/Env/realistic/Animals/Deer.png" id="5_avkje"]
 [ext_resource type="PackedScene" path="res://Scenes/wood01_platform.tscn" id="6_avkje"]
 [ext_resource type="PackedScene" uid="uid://csxvmj2k8gbqu" path="res://Scenes/jellyfish.tscn" id="7_jellyfish"]
+[ext_resource type="PackedScene" path="res://Scenes/hp_bar.tscn" id="8_hp_bar"]
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="8_ui_root"]
 [ext_resource type="PackedScene" path="res://Scenes/destination_marker.tscn" id="9_destination"]
 [ext_resource type="Script" uid="uid://cc2j1c4420cb0" path="res://Scripts/Level02.gd" id="10_level02_script"]
@@ -49,6 +50,12 @@ position = Vector2(400, 600)
 scale = Vector2(3, 3)
 
 [node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
+
+[node name="HPBar" parent="UIRoot/ScreenUI" instance=ExtResource("8_hp_bar")]
+offset_left = 47.0
+offset_top = 76.0
+offset_right = 47.0
+offset_bottom = 76.0
 
 [node name="GameButton" parent="UIRoot" instance=ExtResource("11_game_button")]
 position = Vector2(330, -183)
