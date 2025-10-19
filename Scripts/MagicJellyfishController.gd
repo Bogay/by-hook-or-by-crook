@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
 @export var magic_attack_scene: PackedScene
-@export var attack_cooldown: float = 2.0
+@export var attack_cooldown: float = 1.0
+@export var attack_damage: float = 22.0
 @onready var spawn_attack = $SpawnAttack
 
 func _ready() -> void:

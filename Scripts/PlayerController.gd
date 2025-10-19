@@ -25,6 +25,8 @@ var held_item_type: String = ""
 # Bubble shield system
 var has_bubble_shield: bool = false
 var bubble_sprite: Sprite2D = null
+var bubble_shield_hits: int = 0
+const BUBBLE_SHIELD_MAX_HITS: int = 10
 
 # HP System
 var max_hp: float = 100.0
@@ -242,9 +244,19 @@ func take_damage(amount: float) -> void:
 
 	# Check if bubble shield is active
 	if has_bubble_shield:
-		print("Bubble shield absorbed the damage!")
-		# Remove the bubble shield
-		_remove_bubble_shield()
+		bubble_shield_hits -= 1
+		print("Bubble shield absorbed the damage! Hits remaining: ", bubble_shield_hits)
+
+		# Flash the bubble to indicate hit
+		if bubble_sprite and is_instance_valid(bubble_sprite):
+			var tween = create_tween()
+			tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
+			bubble_sprite.modulate = Color(1, 0.5, 0.5, 1)  # Flash red
+			tween.tween_property(bubble_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+
+		# Remove the bubble shield if out of hits
+		if bubble_shield_hits <= 0:
+			_remove_bubble_shield()
 		return
 
 	current_hp = max(0.0, current_hp - amount)
@@ -345,6 +357,7 @@ func _use_held_item() -> void:
 func give_bubble_shield() -> void:
 	print("Player received bubble shield!")
 	has_bubble_shield = true
+	bubble_shield_hits = BUBBLE_SHIELD_MAX_HITS  # Initialize to 3 hits
 
 	# Create the bubble sprite
 	bubble_sprite = Sprite2D.new()
@@ -360,6 +373,7 @@ func give_bubble_shield() -> void:
 func _remove_bubble_shield() -> void:
 	print("Bubble shield removed!")
 	has_bubble_shield = false
+	bubble_shield_hits = 0
 
 	# Remove the bubble sprite
 	if bubble_sprite and is_instance_valid(bubble_sprite):
