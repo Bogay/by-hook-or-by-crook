@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmt84u38d5xm6"]
+
+[ext_resource type="Texture2D" path="res://Resources/purple_thunder.png" id="1_purple_thunder"]
+[ext_resource type="Script" path="res://Scripts/Thunder.gd" id="2_thunder_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thunder"]
+size = Vector2(100, 20)
+
+[node name="Thunder" type="Area2D"]
+script = ExtResource("2_thunder_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_purple_thunder")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_thunder")

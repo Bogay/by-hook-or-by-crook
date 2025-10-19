@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://beiylt4iwf2s6"]
+[gd_scene load_steps=13 format=3 uid="uid://beiylt4iwf2s6"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Background.tscn" id="1_dvup1"]
 [ext_resource type="PackedScene" uid="uid://d4mp456eoavle" path="res://Scenes/player.tscn" id="2_3imfn"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="8_ui_root"]
 [ext_resource type="PackedScene" path="res://Scenes/destination_marker.tscn" id="9_destination"]
 [ext_resource type="Script" path="res://Scripts/Level03.gd" id="10_level03_script"]
+[ext_resource type="PackedScene" uid="uid://bmt84u38d5xm6" path="res://Scenes/purple_thunder.tscn" id="11_purple_thunder"]
 
 [node name="Level03" type="Node2D"]
 script = ExtResource("10_level03_script")
@@ -60,6 +61,7 @@ enable_walking = false
 enable_jumping = false
 track_player_for_attack = false
 thunder_damage = 100.0
+thunder_scene = ExtResource("11_purple_thunder")
 
 [node name="HPBarPickup" parent="." instance=ExtResource("8_hp_bar_pickup")]
 position = Vector2(102, 53)

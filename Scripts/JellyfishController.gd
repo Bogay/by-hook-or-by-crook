@@ -33,7 +33,7 @@ var is_active: bool = true
 signal died
 
 # Preload scenes
-var thunder_scene = preload("res://Scenes/thunder.tscn")
+@export var thunder_scene: PackedScene = preload("res://Scenes/thunder.tscn")
 var hit_effect_scene = preload("res://Scenes/hit_effect.tscn")
 
 var hp: float = 50.0
