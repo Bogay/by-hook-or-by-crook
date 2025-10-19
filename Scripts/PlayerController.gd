@@ -22,6 +22,10 @@ var throw_target_position: Vector2 = Vector2.ZERO
 var held_item: Node = null
 var held_item_type: String = ""
 
+# Bubble shield system
+var has_bubble_shield: bool = false
+var bubble_sprite: Sprite2D = null
+
 # HP System
 var max_hp: float = 100.0
 var current_hp: float = 100.0
@@ -92,6 +96,10 @@ func _physics_process(delta: float) -> void:
 	# Update held item position above head
 	if held_item and is_instance_valid(held_item):
 		held_item.global_position = global_position + Vector2(0, -80)  # Position above head
+
+	# Update bubble shield position
+	if has_bubble_shield and bubble_sprite and is_instance_valid(bubble_sprite):
+		bubble_sprite.global_position = global_position
 
 func _input_handler():
 	if current_state == State.ATTACK or current_state == State.THROW:
@@ -232,6 +240,13 @@ func _bufferJump():
 func take_damage(amount: float) -> void:
 	if current_state == State.DEAD: return
 
+	# Check if bubble shield is active
+	if has_bubble_shield:
+		print("Bubble shield absorbed the damage!")
+		# Remove the bubble shield
+		_remove_bubble_shield()
+		return
+
 	current_hp = max(0.0, current_hp - amount)
 	hp_changed.emit(current_hp)
 	took_damage.emit()
@@ -326,3 +341,27 @@ func _use_held_item() -> void:
 				print("HPBar placed at: ", mouse_pos)
 			held_item = null
 			held_item_type = ""
+
+func give_bubble_shield() -> void:
+	print("Player received bubble shield!")
+	has_bubble_shield = true
+
+	# Create the bubble sprite
+	bubble_sprite = Sprite2D.new()
+	bubble_sprite.texture = load("res://Resources/bubble.png")
+	bubble_sprite.scale = Vector2(2.5, 2.5)  # Scale up the bubble
+	bubble_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	bubble_sprite.z_index = -1  # Behind the player
+
+	# Add to the player's parent (the level)
+	get_parent().add_child(bubble_sprite)
+	bubble_sprite.global_position = global_position
+
+func _remove_bubble_shield() -> void:
+	print("Bubble shield removed!")
+	has_bubble_shield = false
+
+	# Remove the bubble sprite
+	if bubble_sprite and is_instance_valid(bubble_sprite):
+		bubble_sprite.queue_free()
+		bubble_sprite = null

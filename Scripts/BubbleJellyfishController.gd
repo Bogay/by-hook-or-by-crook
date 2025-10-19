@@ -90,6 +90,14 @@ func take_damage(_amount: float) -> void:
 
 	# TODO: add VFX
 
+func hit_by_spear(player_node: Node) -> void:
+	print("Bubble jellyfish hit by spear! Giving bubble to player...")
+	if player_node and player_node.has_method("give_bubble_shield"):
+		player_node.give_bubble_shield()
+		print("Bubble shield given to player!")
+	# Die after giving bubble
+	_die()
+
 func _die() -> void:
 	if is_dead: return
 	is_dead = true

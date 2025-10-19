@@ -50,6 +50,14 @@ func _on_body_entered(body: Node2D) -> void:
 		else:
 			break
 
+	# Check if it's a bubble jellyfish first (special behavior)
+	if body.has_method("hit_by_spear"):
+		print("  Found hit_by_spear on: ", body.name)
+		if player:
+			body.hit_by_spear(player)
+		queue_free()
+		return
+
 	# Deal damage if the target has take_damage method
 	if body.has_method("take_damage") and not damaged_bodies.has(body):
 		body.take_damage(damage)
