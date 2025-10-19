@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var animated_sprite: AnimatedSprite2D
 @export var player: CharacterBody2D
+@export var thunder_sound: AudioStreamPlayer
 
 # Behavior toggles
 @export var enable_walking: bool = true
@@ -145,6 +146,10 @@ func _attack() -> void:
 	_spawn_thunder(attack_to_left)
 
 func _spawn_thunder(attack_to_left: bool) -> void:
+	# Play thunder sound
+	if thunder_sound:
+		thunder_sound.play()
+
 	var thunder = thunder_scene.instantiate()
 	get_parent().add_child(thunder)
 
