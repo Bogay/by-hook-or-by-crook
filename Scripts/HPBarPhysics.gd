@@ -90,11 +90,11 @@ func _apply_drop_physics() -> void:
 
 	# Scale the visual TextureRect nodes
 	if hp_border:
-		hp_border.scale = Vector2(0.1, 0.3)
+		hp_border.scale = Vector2(1, 1)
 		print("HPBorder scaled to: ", hp_border.scale)
 
 	if hp_fill:
-		hp_fill.scale = Vector2(0.1, 0.3)
+		hp_fill.scale = Vector2(1, 1)
 		print("HPFill scaled to: ", hp_fill.scale)
 
 	# Lock rotation so it falls straight down

@@ -21,7 +21,7 @@ const JUMP_INTERVAL: float = 0.5
 
 # Timer for attacking
 var attack_timer: float = 0.0
-const ATTACK_INTERVAL: float = 4.0
+const ATTACK_INTERVAL: float = 5.0
 var is_attacking: bool = false
 var is_dead: bool = false # Prevent multiple death triggers
 
