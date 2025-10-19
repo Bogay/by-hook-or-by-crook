@@ -8,6 +8,27 @@
 [ext_resource type="Texture2D" uid="uid://b77601lr61hm3" path="res://Resources/stickman/idle.png" id="4_i12xo"]
 [ext_resource type="Texture2D" uid="uid://bxs38qrxd5ywo" path="res://Resources/stickman/walk.png" id="5_63wog"]
 [ext_resource type="Texture2D" uid="uid://657lqsdlgbfx" path="res://Resources/stickman/jump.png" id="6_g3ntx"]
+[ext_resource type="Texture2D" path="res://Resources/stickman/throw.png" id="7_throw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw1"]
+atlas = ExtResource("7_throw")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw2"]
+atlas = ExtResource("7_throw")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw3"]
+atlas = ExtResource("7_throw")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw4"]
+atlas = ExtResource("7_throw")
+region = Rect2(0, 128, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_throw5"]
+atlas = ExtResource("7_throw")
+region = Rect2(192, 128, 192, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2iha"]
 atlas = ExtResource("1_b44xj")
@@ -315,10 +336,25 @@ animations = [{
 "name": &"pull",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_throw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_throw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_throw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_throw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_throw5")
+}],
+"loop": false,
 "name": &"throw",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
