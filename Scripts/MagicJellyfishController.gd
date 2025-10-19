@@ -18,4 +18,5 @@ func _perform_magic_attack() -> void:
 	var random_up_velocity = Vector2(randf_range(-3, 3), randf_range(-10, -30))
 	magic_attack.velocity = random_up_velocity
 	magic_attack.scale = Vector2(0.5, 0.5)
+	magic_attack.damage = attack_damage  # Set the damage from the controller
 	spawn_attack.add_child(magic_attack)
