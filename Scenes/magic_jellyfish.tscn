@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bheaq1lmsmcgt"]
+
+[ext_resource type="Script" uid="uid://cqluxgat7twgv" path="res://Scripts/MagicJellyfishController.gd" id="1_bhsjx"]
+[ext_resource type="PackedScene" uid="uid://bwhul57otappa" path="res://Scenes/magic_attack.tscn" id="2_77muf"]
+[ext_resource type="Texture2D" uid="uid://diqfjb72f44f6" path="res://Resources/magic_jellyfish.png" id="2_bhsjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jellyfish"]
+size = Vector2(30, 30)
+
+[node name="Jellyfish" type="CharacterBody2D" groups=["Jellyfish"]]
+script = ExtResource("1_bhsjx")
+magic_attack_scene = ExtResource("2_77muf")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_bhsjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jellyfish")
+
+[node name="SpawnAttack" type="Node2D" parent="."]
+position = Vector2(20, -13)
