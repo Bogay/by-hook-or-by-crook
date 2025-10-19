@@ -114,7 +114,7 @@ func place_on_ground() -> void:
 		var rect_shape = RectangleShape2D.new()
 
 		# Smaller collision for the scaled bar
-		rect_shape.size = Vector2(170, 30)
+		rect_shape.size = Vector2(170, 70)
 		collision_shape.shape = rect_shape
 
 		physics_body.add_child(collision_shape)
