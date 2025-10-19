@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://be0xqcet07i73"]
+
+[ext_resource type="Script" uid="uid://b7c5sfjmujifr" path="res://Scripts/BubbleJellyfishController.gd" id="1_jhvjn"]
+[ext_resource type="SpriteFrames" uid="uid://csjleqcj1csal" path="res://Animations/Jellyfish_sprite_frames.tres" id="2_jhvjn"]
+[ext_resource type="Texture2D" uid="uid://hqpr7qnj52gq" path="res://Resources/bubble.png" id="3_jhvjn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jellyfish"]
+size = Vector2(30, 30)
+
+[node name="Jellyfish" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite") groups=["Jellyfish"]]
+script = ExtResource("1_jhvjn")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("2_jhvjn")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jellyfish")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.71875, 0.71875)
+texture = ExtResource("3_jhvjn")
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+target_position = Vector2(0, 22)
+
+[node name="WallChecker" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)

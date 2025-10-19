@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://csxvmj2k8gbqu"]
 
-[ext_resource type="Script" path="res://Scripts/JellyfishController.gd" id="1_jellyfish"]
-[ext_resource type="SpriteFrames" path="res://Animations/Jellyfish_sprite_frames.tres" id="2_jellyfish_frames"]
+[ext_resource type="Script" uid="uid://dglsnxg2nngvl" path="res://Scripts/JellyfishController.gd" id="1_jellyfish"]
+[ext_resource type="SpriteFrames" uid="uid://csjleqcj1csal" path="res://Animations/Jellyfish_sprite_frames.tres" id="2_jellyfish_frames"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jellyfish"]
 size = Vector2(30, 30)
