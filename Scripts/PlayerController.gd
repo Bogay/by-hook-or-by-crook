@@ -6,6 +6,11 @@ extends CharacterBody2D
 @export var attack_area: Area2D
 @export var data: Resource
 
+@export_category("Audio")
+@export var jump_sound: AudioStreamPlayer
+@export var hit_sound: AudioStreamPlayer
+@export var throw_sound: AudioStreamPlayer
+
 # Spear throwing
 const SPEAR_SCENE = preload("res://Scenes/spear.tscn")
 const HIT_EFFECT_SCENE = preload("res://Scenes/hit_effect.tscn")
@@ -199,6 +204,9 @@ func _start_attack():
 	# Normal attack
 	can_attack = false
 	attack_area.get_node("CollisionShape2D").disabled = false
+	# Play hit sound
+	if hit_sound:
+		hit_sound.play()
 	await get_tree().create_timer(data.attack_cooldown).timeout
 	can_attack = true
 
@@ -208,6 +216,9 @@ func _jump():
 		coyoteActive = false
 		jumpWasPressed = false
 		current_state = State.JUMP
+		# Play jump sound
+		if jump_sound:
+			jump_sound.play()
 
 
 func _coyoteTime():
@@ -248,6 +259,9 @@ func _handle_death() -> void:
 
 func _start_throw():
 	can_throw_spear = false
+	# Play throw sound
+	if throw_sound:
+		throw_sound.play()
 	# Start cooldown
 	await get_tree().create_timer(spear_throw_cooldown).timeout
 	can_throw_spear = true

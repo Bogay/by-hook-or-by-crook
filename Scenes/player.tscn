@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4mp456eoavle"]
+[gd_scene load_steps=9 format=3 uid="uid://d4mp456eoavle"]
 
 [ext_resource type="Script" uid="uid://bj4rp73fp3evi" path="res://Scripts/PlayerController.gd" id="1_6t5aa"]
 [ext_resource type="SpriteFrames" uid="uid://bvkhxxduyv7jo" path="res://Animations/Player_sprite_frames.tres" id="1_v0iea"]
 [ext_resource type="Resource" uid="uid://qtkrfcsim068" path="res://player_data.tres" id="2_vgqql"]
+[ext_resource type="AudioStream" path="res://Resources/jump06.wav" id="4_jump_audio"]
+[ext_resource type="AudioStream" path="res://Resources/hit02.wav" id="5_hit_audio"]
+[ext_resource type="AudioStream" path="res://Resources/throw02.wav" id="6_throw_audio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(21, 65)
@@ -10,12 +13,15 @@ size = Vector2(21, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(56.5, 30)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collider", "attack_area") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collider", "attack_area", "jump_sound", "hit_sound", "throw_sound") groups=["Player"]]
 script = ExtResource("1_6t5aa")
 animated_sprite = NodePath("AnimatedSprite2D")
 collider = NodePath("CollisionShape2D")
 attack_area = NodePath("AttackArea")
 data = ExtResource("2_vgqql")
+jump_sound = NodePath("JumpSound")
+hit_sound = NodePath("HitSound")
+throw_sound = NodePath("ThrowSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -2.5)
@@ -43,3 +49,18 @@ drag_bottom_margin = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(41.75, 5)
 shape = SubResource("RectangleShape2D_6t5aa")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jump_audio")
+volume_db = -5.0
+pitch_scale = 1.0
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hit_audio")
+volume_db = -5.0
+pitch_scale = 1.0
+
+[node name="ThrowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_throw_audio")
+volume_db = -5.0
+pitch_scale = 1.0
