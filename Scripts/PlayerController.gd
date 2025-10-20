@@ -330,11 +330,20 @@ func _use_held_item() -> void:
 
 	match held_item_type:
 		"TestButton":
-			# Stop jellyfish
-			var jellyfish = get_tree().get_first_node_in_group("Jellyfish")
-			if jellyfish and jellyfish.has_method("stop_all_behaviors"):
-				jellyfish.stop_all_behaviors()
-				print("Jellyfish stopped using held button!")
+			# Check if this button can stop jellyfish
+			var can_stop = true
+			if held_item and "can_stop_jellyfish" in held_item:
+				can_stop = held_item.can_stop_jellyfish
+
+			# Stop jellyfish only if enabled
+			if can_stop:
+				var jellyfish = get_tree().get_first_node_in_group("Jellyfish")
+				if jellyfish and jellyfish.has_method("stop_all_behaviors"):
+					jellyfish.stop_all_behaviors()
+					print("Jellyfish stopped using held button!")
+			else:
+				print("This button cannot stop jellyfish!")
+
 			# Consume the item
 			if held_item and is_instance_valid(held_item):
 				held_item.queue_free()

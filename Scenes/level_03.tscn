@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/destination_marker.tscn" id="9_destination"]
 [ext_resource type="Script" path="res://Scripts/Level03.gd" id="10_level03_script"]
 [ext_resource type="PackedScene" uid="uid://bmt84u38d5xm6" path="res://Scenes/purple_thunder.tscn" id="11_purple_thunder"]
+[ext_resource type="PackedScene" uid="uid://game_button_pickup" path="res://Scenes/game_button_pickup.tscn" id="12_game_button"]
 
 [node name="Level03" type="Node2D"]
 script = ExtResource("10_level03_script")
@@ -68,6 +69,10 @@ position = Vector2(102, 53)
 
 [node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
 position = Vector2(-9, 0)
+
+[node name="GameButton" parent="UIRoot" instance=ExtResource("12_game_button")]
+position = Vector2(330, -183)
+can_stop_jellyfish = false
 
 [node name="DestinationMarker" parent="." instance=ExtResource("9_destination")]
 position = Vector2(2121, 643)

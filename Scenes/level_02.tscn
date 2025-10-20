@@ -56,6 +56,7 @@ position = Vector2(102, 53)
 
 [node name="GameButton" parent="UIRoot" instance=ExtResource("11_game_button")]
 position = Vector2(330, -183)
+can_stop_jellyfish = true
 
 [node name="DestinationMarker" parent="." instance=ExtResource("9_destination")]
 position = Vector2(2860, 680)

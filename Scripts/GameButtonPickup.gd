@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var can_stop_jellyfish: bool = true
+
 var is_flying_to_player: bool = false
 var target_player: Node = null
 const FLY_SPEED: float = 800.0
