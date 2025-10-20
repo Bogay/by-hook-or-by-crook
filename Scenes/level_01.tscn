@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dx23m34i37qvj" path="res://Resources/Env/realistic/Animals/Deer.png" id="5_avkje"]
 [ext_resource type="PackedScene" path="res://Scenes/wood01_platform.tscn" id="6_avkje"]
 [ext_resource type="PackedScene" uid="uid://csxvmj2k8gbqu" path="res://Scenes/jellyfish.tscn" id="7_jellyfish"]
-[ext_resource type="PackedScene" path="res://Scenes/hp_bar.tscn" id="8_hp_bar"]
+[ext_resource type="PackedScene" path="res://Scenes/hp_bar_pickup.tscn" id="8_hp_bar_pickup"]
 [ext_resource type="PackedScene" uid="uid://cwlb3i1awll3x" path="res://Scenes/ui_root.tscn" id="8_ui_root"]
 [ext_resource type="PackedScene" path="res://Scenes/destination_marker.tscn" id="9_destination"]
 [ext_resource type="Script" uid="uid://csv3bcuy758n" path="res://Scripts/Level01.gd" id="10_level01_script"]
@@ -46,13 +46,10 @@ position = Vector2(1346, 546)
 [node name="Player" parent="." instance=ExtResource("2_3imfn")]
 position = Vector2(183, 638)
 
-[node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
+[node name="HPBarPickup" parent="." instance=ExtResource("8_hp_bar_pickup")]
+position = Vector2(102, 53)
 
-[node name="HPBar" parent="UIRoot/ScreenUI" instance=ExtResource("8_hp_bar")]
-offset_left = 47.0
-offset_top = 76.0
-offset_right = 47.0
-offset_bottom = 76.0
+[node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
 
 [node name="DestinationMarker" parent="." instance=ExtResource("9_destination")]
 position = Vector2(2860, 680)
