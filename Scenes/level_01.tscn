@@ -47,10 +47,10 @@ position = Vector2(1346, 546)
 [node name="Player" parent="." instance=ExtResource("2_3imfn")]
 position = Vector2(183, 638)
 
-[node name="HPBarPickup" parent="." instance=ExtResource("8_hp_bar_pickup")]
-position = Vector2(102, 53)
-
 [node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
+
+[node name="HPBarPickup" parent="UIRoot" instance=ExtResource("8_hp_bar_pickup")]
+position = Vector2(-458, -307)
 
 [node name="GameButton" parent="UIRoot" instance=ExtResource("12_game_button")]
 position = Vector2(330, -183)

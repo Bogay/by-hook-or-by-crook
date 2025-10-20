@@ -64,11 +64,11 @@ track_player_for_attack = false
 thunder_damage = 100.0
 thunder_scene = ExtResource("11_purple_thunder")
 
-[node name="HPBarPickup" parent="." instance=ExtResource("8_hp_bar_pickup")]
-position = Vector2(102, 53)
-
 [node name="UIRoot" parent="." instance=ExtResource("8_ui_root")]
 position = Vector2(-9, 0)
+
+[node name="HPBarPickup" parent="UIRoot" instance=ExtResource("8_hp_bar_pickup")]
+position = Vector2(-449, -307)
 
 [node name="GameButton" parent="UIRoot" instance=ExtResource("12_game_button")]
 position = Vector2(330, -183)
